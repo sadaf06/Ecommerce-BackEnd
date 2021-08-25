@@ -20,7 +20,7 @@ mongoose
   .then(() => {
     console.log("database connected");
   });
-var whitelist = ['https://shoppingcartuser.herokuapp.com/', 'https://shoppingcartadmin.herokuapp.com/']
+var whitelist = ['https://shoppingcartuser.herokuapp.com', 'https://shoppingcartadmin.herokuapp.com']
 var corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
