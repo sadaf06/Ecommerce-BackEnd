@@ -20,9 +20,19 @@ mongoose
   .then(() => {
     console.log("database connected");
   });
+var whitelist = ['https://shoppingcartuser.herokuapp.com/', 'https://shoppingcartadmin.herokuapp.com/']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use("/public", express.static(path.join(__dirname, "uploads")));
 app.use("/", userRoute);
 app.use("/", adminRoute);
