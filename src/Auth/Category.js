@@ -23,9 +23,9 @@ const formateList = (allCat, productID = null) => {
   return catList;
 };
 exports.categoryAdd = (req, res) => {
-  // console.log(req.body)
   let categoryImage = [];
   if (req.files.length > 0) {
+    console.log(req.files.path)
     req.files.map((files) => {
       categoryImage.push({ image: files.filename });
     });

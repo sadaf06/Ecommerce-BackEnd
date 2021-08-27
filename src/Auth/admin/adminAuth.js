@@ -39,7 +39,8 @@ exports.signIn = (req, res) => {
 };
 exports.signUp = (req, res) => {
   userModel.findOne({ email: req.body.email }).exec((err, user) => {
-    if (user) {
+    if (user && user.role === "admin") {
+      console.log(user)
       res.status(409).json({ message: "admin already registered" });
     } else {
       const { firstName, lastName, email, password, contact } = req.body;
